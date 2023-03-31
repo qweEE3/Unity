@@ -1,21 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class PlayerControl : MonoBehaviour
 {
-    private float speed = 50;
+    [SerializeField] private float speed = 35;
     private Rigidbody rb;
-    private GameObject camera;
-    private GameObject testCube;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        camera = GameObject.FindGameObjectWithTag("MainCamera");
-        //testCube = GameObject.FindGameObjectWithTag("TestCube");
-        testCube = new GameObject();
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
     }
 
     // Update is called once per frame
@@ -25,26 +22,66 @@ public class PlayerControl : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        testCube.transform.position = camera.transform.position;        
-        testCube.transform.rotation = new Quaternion(0, camera.transform.rotation.y, 0, camera.transform.rotation.w);        
-        //var rotation = new Quaternion(0, camera.transform.rotation.y, 0, camera.transform.rotation.w);
+        if(transform.position.y > 1.3)
+        {
+            var position = transform.position;
+            position.y = 1;
+            transform.position = position;
+        }
+        if (!Input.GetKey(KeyCode.W))
+        {
+            if (rb.velocity.z > 0)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
+            }
+        }
+        if (!Input.GetKey(KeyCode.S))
+        {
+            if (rb.velocity.z < 0)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
+            }
+        }
+        if (!Input.GetKey(KeyCode.D))
+        {
+            if (rb.velocity.x > 0)
+            {
+                rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
+            }
+        }
+        if (!Input.GetKey(KeyCode.A))
+        {
+            if (rb.velocity.x < 0)
+            {
+                rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
+            }
+        }
+
         if (Input.GetKey(KeyCode.W))
         {
-            //transform.Translate((rotation.forward * Time.deltaTime) * speed, Space.World);
-            transform.Translate((testCube.transform.forward * Time.deltaTime) * speed, Space.World);
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, speed);         
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate((-testCube.transform.forward * Time.deltaTime) * speed, Space.World);
-
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, -speed);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate((testCube.transform.right * Time.deltaTime) * speed, Space.World);
+            rb.velocity = new Vector3(speed, rb.velocity.y, rb.velocity.z);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate((-testCube.transform.right * Time.deltaTime) * speed, Space.World);
+            rb.velocity = new Vector3(-speed, rb.velocity.y, rb.velocity.z);
+        }
+
+        if (rb.velocity.magnitude > speed)
+        {
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, speed);
+        }
+
+        if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+        {
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, 0);            
         }
     }
 }
