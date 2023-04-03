@@ -39,6 +39,7 @@ public class SpawnEnemy : MonoBehaviour
         {
             Vector3 position = new Vector3(Random.Range(minPointX, maxPointX), Y, Random.Range(minPointZ, maxPointZ));
             GameObject enemy = Instantiate(Template, position, Quaternion.identity);
+            enemy.AddComponent<Follow>();
             enemy.transform.parent = transform;
             enemy.tag = "Enemy";
 
