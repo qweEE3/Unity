@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    public float damage = 10f;
+    public float damage = 15f;
     public float range = 100f;
-    private Camera camera;
+    public float force = 155;
+    public ParticleSystem muzzleFlash;
+    public Transform bulletSpawn;
+    public AudioClip shotSFX;
+    public AudioSource _audioSource;
+    public GameObject hitEffect;
+
+    public Camera _cam;
     // Start is called before the first frame update
     void Start()
     {
-        camera = this.GetComponent<Camera>();
+        
     }
 
     // Update is called once per frame
@@ -25,16 +32,31 @@ public class Gun : MonoBehaviour
     //shoot forward
     private void Shoot()
     {
+        _audioSource.PlayOneShot(shotSFX);
+        muzzleFlash.Play();
         RaycastHit hit;
+
         if (Physics.Raycast(transform.position, transform.forward, out hit))
         {
             Debug.Log(hit.point);
-            Debug.DrawRay(transform.position, hit.point - transform.position, Color.green, 5);
-            if (hit.transform.tag == "Enemy")
+
+            GameObject impact = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(impact, 2f);
+
+            Target target = hit.transform.GetComponent<Target>();
+            if (target != null) 
             {
-                Destroy(hit.collider.gameObject);
+                target.TakeDamage(damage);
             }
 
+            //if (hit.transform.tag == "Enemy")
+            //{
+                //Destroy(hit.collider.gameObject);
+            //}
+            //if (hit.rigidbody != null)
+            //{
+            //    hit.rigidbody.AddForce(-hit.normal * force);
+            //}
         }
     }
 }

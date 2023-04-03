@@ -360,6 +360,7 @@
 "Assets/Scripts/PlayerControl.cs"
 "Assets/Scripts/RotatePlayer.cs"
 "Assets/Scripts/SpawnEnemy.cs"
+"Assets/Scripts/Target.cs"
 "Assets/Scripts/помойка/CameraControl.cs"
 "Assets/Scripts/помойка/CameraRotateAround.cs"
 "Assets/Scripts/помойка/WalkToPlayer.cs"
