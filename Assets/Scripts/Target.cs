@@ -15,8 +15,12 @@ public class Target : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
-        LineBar.fillAmount = health / 100;
-        playerHealthText.text = health + "%";
+
+        if (gameObject.tag == "Player")
+        {
+            LineBar.fillAmount = health / 100;
+            playerHealthText.text = health + "%";
+        }
 
         if (health <= 0)
         {
@@ -38,6 +42,7 @@ public class Target : MonoBehaviour
         if (health > maxHealth)
         {
             health = maxHealth;
+            playerHealthText.text = maxHealth + "%";
         }
     }
 }
