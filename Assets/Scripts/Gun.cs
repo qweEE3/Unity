@@ -38,8 +38,6 @@ public class Gun : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.forward, out hit))
         {
-            Debug.Log(hit.point);
-
             GameObject impact = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(impact, 2f);
 
@@ -48,15 +46,6 @@ public class Gun : MonoBehaviour
             {
                 target.TakeDamage(damage);
             }
-
-            //if (hit.transform.tag == "Enemy")
-            //{
-                //Destroy(hit.collider.gameObject);
-            //}
-            //if (hit.rigidbody != null)
-            //{
-            //    hit.rigidbody.AddForce(-hit.normal * force);
-            //}
         }
     }
 }

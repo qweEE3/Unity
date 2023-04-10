@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 136657755167196841}
   - component: {fileID: 136657755167196886}
   - component: {fileID: -6047080958555242303}
+  - component: {fileID: 3293529145568260659}
   - component: {fileID: 4164487238093258633}
   - component: {fileID: -2110240283263057150}
   - component: {fileID: -1568564122169789476}
@@ -133,6 +134,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &3293529145568260659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136657755167196887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b03216593f1fd2349a40b222105214d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDamage: 10
+  collisionTag: Player
 --- !u!114 &4164487238093258633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +188,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ad8fc0ce698d7478db137057db1095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 100
+  maxHealth: 100
 --- !u!1 &809628163428605887
 GameObject:
   m_ObjectHideFlags: 0
