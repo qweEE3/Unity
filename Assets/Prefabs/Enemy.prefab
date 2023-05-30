@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 136657755167196886}
   - component: {fileID: -6047080958555242303}
   - component: {fileID: 3293529145568260659}
+  - component: {fileID: 322145307849369314}
   - component: {fileID: 4164487238093258633}
   - component: {fileID: -2110240283263057150}
   - component: {fileID: -1568564122169789476}
@@ -148,6 +149,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionDamage: 10
   collisionTag: Player
+--- !u!114 &322145307849369314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136657755167196887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7ddf7efbe43234d87059a9fe6a718c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionDamage: 10
+  collisionTag: Wall
 --- !u!114 &4164487238093258633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +205,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
+  LineBar: {fileID: 0}
+  playerHealthText: {fileID: 0}
+  MaxDamageColor: {r: 0.9716981, g: 0.20002313, b: 0.022917405, a: 1}
+  MinDamageColor: {r: 0.67058825, g: 0.43137255, b: 0.3764706, a: 1}
 --- !u!1 &809628163428605887
 GameObject:
   m_ObjectHideFlags: 0

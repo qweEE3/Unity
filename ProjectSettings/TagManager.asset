@@ -11,6 +11,8 @@ TagManager:
   - Enemy
   - UnitInCamera
   - TestCube
+  - Wall
+  - Undefined
   layers:
   - Default
   - TransparentFX
