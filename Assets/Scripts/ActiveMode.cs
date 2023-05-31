@@ -24,11 +24,17 @@ public class ActiveMode : MonoBehaviour
         gun.GetComponent<Gun>().enabled = false;
     }
 
+    public void BuildTurretMode()
+    {
+        mode = "BuildTurret";
+        gun.GetComponent<Gun>().enabled = false;
+    }
+
     public void stopBuildMode()
     {
         mode = "";
         gun.GetComponent<Gun>().enabled = true;
-    }
+    }   
 
     public string Mode
     {

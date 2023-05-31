@@ -44,6 +44,10 @@ public class Gun : MonoBehaviour
             Target target = hit.transform.GetComponent<Target>();
             if (target != null) 
             {
+                if (target.health <= damage)
+                {
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<Bank>().currentBank += 2;
+                }
                 target.TakeDamage(damage);
             }
         }

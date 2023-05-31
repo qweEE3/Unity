@@ -32,39 +32,6 @@ public class Target : MonoBehaviour
         if (gameObject.tag == "Enemy")
         {
             gameObject.GetComponent<Renderer>().material.color = Color.Lerp(MaxDamageColor, MinDamageColor, health / maxHealth);
-
-            /*
-            switch (health)
-            {
-                case 90:
-                    gameObject.GetComponent<Renderer>().material.color = Color.red;
-                    break;
-                case 80:
-                    gameObject.GetComponent<Renderer>().material.color = Color.yellow;
-                    break;
-                case 70:
-                    gameObject.GetComponent<Renderer>().material.color = Color.red;
-                    break;
-                case 60:
-                    gameObject.GetComponent<Renderer>().material.color = Color.red;
-                    break;
-                case 50:
-                    gameObject.GetComponent<Renderer>().material.color = Color.red;
-                    break;
-                case 40:
-                    gameObject.GetComponent<Renderer>().material.color = Color.red;
-                    break;
-                case 30:
-                    gameObject.GetComponent<Renderer>().material.color = Color.red;
-                    break;
-                case 20:
-                    gameObject.GetComponent<Renderer>().material.color = Color.red;
-                    break;
-                case 10:
-                    gameObject.GetComponent<Renderer>().material.color = Color.red;
-                    break;
-            }
-            */
         }
         
 
@@ -72,6 +39,7 @@ public class Target : MonoBehaviour
 
     void Die()
     {
+        GameObject.FindGameObjectWithTag("spawner").GetComponent<SpawnEnemy>().checkEnemyOnMap();
         Destroy(gameObject);
     }
 

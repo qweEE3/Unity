@@ -13,6 +13,10 @@ TagManager:
   - TestCube
   - Wall
   - Undefined
+  - dulo
+  - turretHead
+  - spawner
+  - mainPanel
   layers:
   - Default
   - TransparentFX
